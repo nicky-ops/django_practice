@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.flatpages",
     "django.contrib.sites",
+    "tinymce",
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = "cms.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ['/Users/mac/Desktop/Projects/django_practice/cms/cms/templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
