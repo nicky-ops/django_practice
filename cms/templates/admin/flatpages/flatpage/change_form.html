@@ -4,11 +4,14 @@
 {% block extrahead %}{{ block.super }}
 <script src="{% url 'admin:jsi18n' %}"></script>
 {{ media }}
+
 <script type="text/javascript" src="/tiny_mce/tiny_mce.js"></script> <script type="text/javascript">
     tinyMCE.init({
     mode: "textareas",
     theme: "simple" });
-    </script>
+</script>
+
+
 {% endblock %}
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static "admin/css/forms.css" %}">{% endblock %}
