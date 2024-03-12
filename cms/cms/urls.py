@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path(r'^search/', 'cms.search.vies.search')
     path(r"", include("django.contrib.flatpages.urls")),
     path('tinymce/', include('tinymce.urls')),
 ]
