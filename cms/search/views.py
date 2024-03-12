@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django import HttpResponse
+from django.http import HttpResponse
 from django.template import loader, Context
 from django.contrib.flatpages.models import FlatPage
 # Create your views here.
