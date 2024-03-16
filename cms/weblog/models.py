@@ -22,3 +22,8 @@ class Entry(models.Model):
     excerpt = models.TextField(blank=True)
     body = models.TextField()
     pub_date = models.DateTimeField()
+    slug = models.SlugField(unique_for_date="pub_date")
+
+    class Meta:
+        verbose_name_plural = "Entries"
+        ordering = ["-pub_date"]
