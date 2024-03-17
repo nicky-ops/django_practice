@@ -10,3 +10,7 @@ class EntryAdmin(admin.ModelAdmin):
 
 admin.site.register(Entry, EntryAdmin)
 admin.site.register(Category, CategoryAdmin)
+
+
+
+
