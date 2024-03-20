@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "tinymce",
     "search",
     "weblog",
+    "tagging",
 ]
 
 MIDDLEWARE = [
