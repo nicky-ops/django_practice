@@ -1,8 +1,8 @@
 from django.urls import path, include
-from weblog import views
-
+from . import views
+from .views import EntryDetailView
 
 urlpatterns = [
     path('weblog/', views.entries_index, name="entries_index"),
-    path(r'^weblog/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$', views.entry_detail, name="entries_detail"),
+    path('weblog/<int:year>/<str:month>/<int:day>/<slug:slug>/', EntryDetailView.as_view(), name='entry-detail'),
 ]
