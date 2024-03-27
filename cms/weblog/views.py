@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Entry
+from django.views.generic import DetailView
 
 # Create your views here.
 def entries_index(request):
@@ -7,14 +8,11 @@ def entries_index(request):
         "entry_list": Entry.objects.all(),
     })
 
-def entry_detail(request, year, month, day, slug):
-    import datetime, time
-    date_stamp = time.strptime(year+month+day, '%Y%b%d')
-    pub_date = datetime.date(*date_stamp[:3])
-    return render('entry_detail.html',
-                              {
-                                  'entry': Entry.objects.get(pub_date_year=pub_date.year,
-                                                             pub_date_month=pub_date.month,
-                                                             pub_date_day=pub_date.day,
-                                                             slug=slug)
-                              })
+class EntryDetailView(DetailView):
+    model = Entry
+    template_name = 'entry_detail.html'
+    context_object_name = 'entry'
+    slug_field = 'slug'
+    month_format = '%b'
+    date_field = 'pub_date'
+    query_pk_and_slug = True
