@@ -21,6 +21,7 @@ from search import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("search/", views.search, name="search"),
+    path("", include("weblog.urls")),
     path(r"", include("django.contrib.flatpages.urls")),
     path('tinymce/', include('tinymce.urls')),
 ]
