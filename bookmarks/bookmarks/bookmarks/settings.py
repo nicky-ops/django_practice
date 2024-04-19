@@ -31,8 +31,16 @@ ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+SOCIAL_AUTH_FACEBOOK_KEY = '1145226846524326'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b413b899350b7979c530ac0e9bcf27b5'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
-AUTHENTICATION_BACKENDS = [ 'django.contrib.auth.backends.ModelBackend', 'account.authentication.EmailAuthBackend',
+
+AUTHENTICATION_BACKENDS =[
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2'
+                           
 ]
 
 # Application definition
