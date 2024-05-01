@@ -31,13 +31,6 @@ ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1145226846524326'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'b413b899350b7979c530ac0e9bcf27b5'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_TWITTER_KEY = 'UEJANgETNUJAVQQq3Hdjgcr63'
-SOCIAL_AUTH_TWITTER_SECRET = '8AqMHFrNQREHUtKXnk2eHg0aHzaJeRqkFOvg78IvA9vm4qSBCI'
-
-
 AUTHENTICATION_BACKENDS =[
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
