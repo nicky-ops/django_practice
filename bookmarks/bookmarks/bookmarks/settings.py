@@ -126,6 +126,11 @@ PASSWORD_HASHERS = [ 'django.contrib.auth.hashers.PBKDF2PasswordHasher', 'django
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type('application/javascript', '.js', True)
+    mimetypes.add_type('text/css', '.css', True)
+
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
