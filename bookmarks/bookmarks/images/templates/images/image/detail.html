@@ -3,11 +3,8 @@
 {% block title %}{{ image.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ image.title }}</h1>
-    {% load thumbnail %}
-    <a href="{{ image.image.url }}">
-        <img src="{% thumbnail image.image 300x0 %}" class="image-detail">
-    </a>
+    <h1>{{image.title}}</h1>
+    <img src="{{ image.image.url }}" class="image-detail">
     {% with total_likes=image.users_like.count %}
         <div class="image-info">
             <div>
@@ -19,12 +16,12 @@
         </div>
         <div class="image-likes">
             {% for user in image.users_like.all %}
-                <div>
-                    {% if user.profile.photo %}
-                        <img src="{{ user.profile.photo.url }}">
-                    {% endif %}
-                    <p>{{ user.first_name }}</p>
-                </div>
+            <div>
+                {% if user.profile.photo %}
+                    <img src="{{ user.profile.photo.url }}" >
+                {% endif %}
+                <p>{{ user.first_name }}</p>
+            </div>
             {% empty %}
                 Nobody likes this image yet.
             {% endfor %}
