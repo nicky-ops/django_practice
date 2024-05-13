@@ -37,15 +37,15 @@ def image_detail(request, id, slug):
                    'image': image})
 
 
-# @login_required
-# @require_POST
-# def image_like(request):
-#     image_id = request.POST.get('id')
-#     action = request.POST.get('action')
-#     if image_id and action:
-#         try:
-#             image = Image.objects.get(id=image_id)
-#             if action == 'like':
-#                 image.users_like.add(request.user)
-#             else:
+@login_required
+@require_POST
+def image_like(request):
+    image_id = request.POST.get('id')
+    action = request.POST.get('action')
+    if image_id and action:
+        try:
+            image = Image.objects.get(id=image_id)
+            if action == 'like':
+                image.users_like.add(request.user)
+            else:
                 
