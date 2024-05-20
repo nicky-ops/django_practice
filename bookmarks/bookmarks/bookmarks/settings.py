@@ -33,7 +33,7 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 ABSOLUTE_URL_OVERRIDES = {
-    'auth_user': lambda u: reverse_lazy('user_detail', args=[u.username])
+    'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
 }
 
 AUTHENTICATION_BACKENDS =[
