@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,6 +31,10 @@ ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 # Managing file uploads and serving media files
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth_user': lambda u: reverse_lazy('user_detail', args=[u.username])
+}
 
 AUTHENTICATION_BACKENDS =[
     'django.contrib.auth.backends.ModelBackend',
