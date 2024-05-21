@@ -59,9 +59,11 @@ INSTALLED_APPS = [
     "images.apps.ImagesConfig",
     'easy_thumbnails',
     'actions.apps.ActionsConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -156,3 +158,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Debug toolbar will only display if the IP address matches any of the entries in the list
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
