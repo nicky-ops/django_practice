@@ -175,4 +175,4 @@ import redis
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")  # Default to localhost for development
 
 # Parse Redis URL
-redis_url = redis.from_url(REDIS_URL)
+REDIS_CONFIG = redis.from_url(REDIS_URL)
