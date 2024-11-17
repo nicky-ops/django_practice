@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+from urllib.parse import urlparse
 from pathlib import Path
 from django.urls import reverse_lazy
 
@@ -168,6 +169,24 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-REDIS_HOST = 'redis://red-cst2uei3esus739s5bb0'
-REDIS_PORT = 6379
-REDIS_DB = 0
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
+
+try:
+    # Parse the Redis URL
+    redis_url = urlparse(REDIS_URL)
+    
+    # Initialize Redis connection
+    r = redis.Redis(
+        host=redis_url.hostname,
+        port=redis_url.port or 6379,
+        username=redis_url.username or None,
+        password=redis_url.password or None,
+        db=0,
+        decode_responses=True,
+        ssl=REDIS_URL.startswith('rediss://')  # Enable SSL if using rediss://
+    )
+    
+    # Test the connection
+    r.ping()
+except redis.ConnectionError:
+    print("Error connecting to Redis")
