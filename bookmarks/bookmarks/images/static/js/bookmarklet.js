@@ -1,4 +1,4 @@
-const siteUrl = '//social-bookmarking-website.onrender.com';
+const siteUrl = '//social-bookmarking-website.onrender.com/';
 const styleUrl = siteUrl + 'static/css/bookmarklet.css';
 const minWidth = 250;
 const minHeight = 250;
