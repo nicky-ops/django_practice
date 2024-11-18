@@ -23,7 +23,7 @@ class Contact(models.Model):
         ordering = ['-created']
 
     def __str__(self):
-        return f'{self.user_form} follows {self.user_to}'
+        return f'{self.user_from} follows {self.user_to}'
     
 
 # Add the following fields to User dynamically
