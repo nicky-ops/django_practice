@@ -14,7 +14,7 @@ from django.conf import settings
 
 
 # Connect to redis
-r = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
+r = redis.Redis.from_url(settings.REDIS_URL)
 
 # Create your views here.
 @login_required

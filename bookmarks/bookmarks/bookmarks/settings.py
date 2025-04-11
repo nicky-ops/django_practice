@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
+import redis
 from pathlib import Path
 from django.urls import reverse_lazy
 
@@ -29,8 +30,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', 'social-bookmarking-website.onrender.com']
 
 # Managing file uploads and serving media files
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
@@ -45,16 +47,6 @@ AUTHENTICATION_BACKENDS =[
 ]
 
 # Application definition
-
-import os
-
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 INSTALLED_APPS = [
     "account.apps.AccountConfig",
     "django.contrib.admin",
@@ -74,6 +66,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -163,6 +156,10 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -173,6 +170,10 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB = 0
+import os
+import redis
+
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")  # Default to localhost for development
+
+# Parse Redis URL
+REDIS_CONFIG = redis.from_url(REDIS_URL)
