@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-d$++s6@ti@ywfg6uf8%jby))y_s!jh@7q8@_(61dgrx^xpn1#u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', 'social-bookmarking-website.onrender.com']
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1', 'social-bookmarking-website.onrender.com', 'pixmark.kiprutonick.work']
 
 # Managing file uploads and serving media files
 MEDIA_URL = '/media/'
